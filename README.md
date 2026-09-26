@@ -30,7 +30,20 @@ npm run build     # typecheck and build static files into dist/
 npm run preview   # serve the production build locally
 ```
 
-The build output in `dist/` is static and can be hosted anywhere, such as GitHub Pages.
+Live at **<https://www.andrewklong.com/Helios3BodyProblemVisualizer/>**.
+
+## Deployment
+
+The site is a GitHub Pages *project site*. [AndrewKL/AndrewKL.github.io](https://github.com/AndrewKL/AndrewKL.github.io) claims `www.andrewklong.com` with its `CNAME`, so every other Pages site on the account, including this one, is served under that domain at `/<repo name>/`.
+
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push and pull request. It installs, tests and builds; on `main` it also publishes `dist/` to Pages. The build sets `BASE=/Helios3BodyProblemVisualizer/` so asset URLs resolve under that path ([`vite.config.ts`](vite.config.ts)). Locally `BASE` defaults to `/`.
+
+To test a production build under the real path:
+
+```sh
+BASE=/Helios3BodyProblemVisualizer/ npm run build
+BASE=/Helios3BodyProblemVisualizer/ npm run preview   # http://localhost:4173/Helios3BodyProblemVisualizer/
+```
 
 ## How it works
 
