@@ -43,6 +43,7 @@ stateDiagram-v2
 - **Placing a body:** the body appears at the cursor with a short "birth" animation (it grows from 0 to full size over about 300 ms). Bodies start at rest in phase 1.
 - **Colors:** each new body gets the next color from a fixed palette of distinct hues (for example amber, cyan, magenta, lime, violet), so bodies are easy to tell apart.
 - **Pulsing starts right away.** Bodies pulse and react to each other's proximity while the user is still placing them. This makes the page feel alive before Play is pressed.
+- **Opening hint:** on page load, "Click anywhere on the screen multiple times, then press Play" pops into the middle of the screen (fade and scale in). It dims once the first body is placed so it doesn't compete with the bodies, stays up until Play, and pops back in after Reset.
 - **Play disabled** until at least one body exists (two or more are needed for anything interesting).
 - **Reset** returns to an empty canvas. An open question is whether Reset should instead restore the bodies to where they were placed (see Open questions).
 - **Trails (optional in phase 1):** a fading trail behind each body while it moves.

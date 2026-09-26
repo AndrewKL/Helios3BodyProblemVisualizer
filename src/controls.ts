@@ -29,7 +29,10 @@ export function bindControls({ onPlayPause, onReset, onMuteChange }: ControlHand
     play.textContent = mode === 'running' ? 'Pause' : 'Play';
     play.disabled = bodyCount === 0;
     reset.disabled = bodyCount === 0;
-    hint.hidden = bodyCount > 0;
+    // Stays up until Play so "then press Play" is still there after the first
+    // clicks; dims once bodies exist so it doesn't compete with them.
+    hint.hidden = mode !== 'placing';
+    hint.classList.toggle('dim', bodyCount > 0);
   };
 }
 
