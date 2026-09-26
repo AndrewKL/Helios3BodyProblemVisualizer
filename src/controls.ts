@@ -16,6 +16,7 @@ export function bindControls({ onPlayPause, onReset, onMuteChange }: ControlHand
 
   play.addEventListener('click', onPlayPause);
   reset.addEventListener('click', onReset);
+  bindInfoDialog();
 
   mute.checked = loadMuted();
   onMuteChange(mute.checked);
@@ -30,6 +31,16 @@ export function bindControls({ onPlayPause, onReset, onMuteChange }: ControlHand
     reset.disabled = bodyCount === 0;
     hint.hidden = bodyCount > 0;
   };
+}
+
+function bindInfoDialog(): void {
+  const info = document.getElementById('info') as HTMLButtonElement;
+  const dialog = document.getElementById('info-dialog') as HTMLDialogElement;
+  info.addEventListener('click', () => dialog.showModal());
+  // Esc and the close button are handled by <dialog>; also close on a backdrop click.
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
 }
 
 function loadMuted(): boolean {

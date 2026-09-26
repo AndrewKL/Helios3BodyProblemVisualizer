@@ -8,14 +8,15 @@ Helios is a single web page. The user clicks to place bodies, presses **Play** t
 
 - **Place bodies:** each click on the canvas creates one body at that point.
 - **Show interaction:** a body's appearance and sound change as it nears another body, both before and during the simulation.
-- **Keep controls simple:** Play, Reset and a Mute checkbox.
+- **Keep controls simple:** Play, Reset, Info and a Mute checkbox.
+- **Explain the science:** an Info pop-up describes the three-body problem, why it has no general solution, and why it is unstable.
 - **Run in any modern browser:** no install and no server. Target 60 fps with up to about 10 bodies.
 
 Not in phase 1: saving or sharing scenarios, preset orbits, 3D camera control.
 
 ## User experience
 
-The page is a full-window dark canvas with a small control bar at the bottom center: **Play/Pause**, **Reset** and a **Mute** checkbox.
+The page is a full-window dark canvas with a small control bar at the bottom center: **Play/Pause**, **Reset**, **Info** and a **Mute** checkbox.
 
 ### States
 
@@ -45,6 +46,7 @@ stateDiagram-v2
 - **Play disabled** until at least one body exists (two or more are needed for anything interesting).
 - **Reset** returns to an empty canvas. An open question is whether Reset should instead restore the bodies to where they were placed (see Open questions).
 - **Trails (optional in phase 1):** a fading trail behind each body while it moves.
+- **Info:** opens a modal dialog (native `<dialog>`) explaining the three-body problem: what it is, why it is hard to solve (18 variables, only 10 conservation laws; Bruns and Poincaré showed no general closed form exists; Sundman's series converges too slowly to use), why it is unstable (chaos, close-encounter energy exchange, eventual ejection), the rare periodic solutions (Euler, Lagrange, figure-eight), and how this simulation differs (2D, softened, central pull). It closes with the × button, Esc, or a click on the backdrop. The simulation keeps running behind it.
 - **Mute:** a checkbox that silences all sound in every state. It fades out over about 50 ms rather than cutting off, and the choice is remembered in the browser (`localStorage`).
 
 ## Visual design
@@ -156,7 +158,7 @@ src/
   visuals.ts       // proximity factor, pulse, stretch calculations
   render.ts        // three.js scene: spheres, halos, bloom, trails, starfield
   audio.ts         // Web Audio wub voices, mute, proximity-to-sound mapping
-  controls.ts      // Play/Pause/Reset buttons, Mute checkbox
+  controls.ts      // Play/Pause/Reset buttons, Info dialog, Mute checkbox
   config.ts        // tunable constants (G, mass, center attractor, radii, pulse, stretch, audio)
   palette.ts       // body colors
 ```

@@ -14,6 +14,7 @@ Rendering is 3D (three.js / WebGL). The simulation currently runs on a 2D plane.
 | **Play** | Starts the simulation; the button becomes **Pause** |
 | **Pause** | Freezes the simulation; bodies keep pulsing |
 | **Reset** | Stops the simulation and clears all bodies |
+| **Info** | Opens a pop-up explaining the three-body problem, why it has no general solution, and why it's unstable |
 | **Mute** | Silences all sound; remembered between visits |
 
 Bodies start at rest, so they fall toward each other, pass through, and slingshot apart. A weak, invisible attractor at the center of the screen pulls strays back toward the middle. Setting an initial velocity (to get orbits) is planned for phase 2.
@@ -100,7 +101,7 @@ src/
   visuals.ts          proximity, pulse, stretch calculations
   render.ts           three.js scene: spheres, halos, bloom, trails, starfield
   audio.ts            Web Audio wub voices and mute
-  controls.ts         buttons and mute checkbox
+  controls.ts         buttons, info dialog and mute checkbox
   config.ts           tunable constants
   palette.ts          body colors
   style.css

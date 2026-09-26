@@ -11,8 +11,81 @@
     <div id="controls">
       <button id="play" type="button">Play</button>
       <button id="reset" type="button">Reset</button>
+      <button id="info" type="button" aria-haspopup="dialog">Info</button>
       <label class="toggle"><input id="mute" type="checkbox" /> Mute</label>
     </div>
+
+    <dialog id="info-dialog" aria-labelledby="info-title">
+      <div class="dialog-body">
+        <form method="dialog" class="dialog-close">
+          <button type="submit" aria-label="Close">&times;</button>
+        </form>
+        <h2 id="info-title">The three-body problem</h2>
+
+        <p>
+          Given three masses, their positions and their velocities, where will they be at any later
+          time? Newton answered this for <em>two</em> bodies in 1687: they trace ellipses, parabolas
+          or hyperbolas forever, and a formula tells you exactly where they will be. Add a third body
+          and there is no such formula.
+        </p>
+
+        <h3>Why it's hard to solve</h3>
+        <ul>
+          <li>
+            <strong>Too many unknowns, too few rules.</strong> Three bodies in space have 18 numbers
+            that change over time (3 position and 3 velocity components each). Conservation of
+            energy, momentum and angular momentum pins down only 10 of them. In 1887 Heinrich Bruns
+            proved there are no other algebraic conserved quantities to make up the difference.
+          </li>
+          <li>
+            <strong>No general closed-form answer.</strong> Henri Poincaré showed around 1890 that
+            the motion generally can't be reduced to a neat formula at all. Karl Sundman did find an
+            infinite series that solves it (1912), but it converges so slowly that it is useless in
+            practice.
+          </li>
+          <li>
+            <strong>So we simulate.</strong> Like this page, astronomers step the bodies forward in
+            small time increments with a computer. That works, but every step adds a tiny error.
+          </li>
+        </ul>
+
+        <h3>Why it's unstable</h3>
+        <ul>
+          <li>
+            <strong>Chaos.</strong> Poincaré also discovered that the system is chaotic: a
+            difference in starting positions far smaller than you could ever measure grows
+            exponentially over time. Two nearly identical setups soon look nothing alike, so
+            long-term prediction is impossible even though the laws are exact.
+          </li>
+          <li>
+            <strong>Close encounters.</strong> When two bodies pass near each other they swap a lot
+            of energy very quickly. One can be flung onto a wide orbit, or out of the system.
+          </li>
+          <li>
+            <strong>Ejection is the usual ending.</strong> Most three-body systems eventually throw
+            one body out. The other two settle into a tight pair carrying away the leftover energy.
+          </li>
+        </ul>
+
+        <h3>The rare stable dances</h3>
+        <p>
+          Special starting positions do repeat forever. Euler (1767) found three bodies in a line,
+          and Lagrange (1772) found them at the corners of an equilateral triangle; Jupiter's Trojan
+          asteroids ride that triangle. In 1993 Cris Moore found three equal masses chasing each
+          other around a figure-eight. But most of these orbits are balanced on a knife-edge: nudge
+          them and chaos takes over.
+        </p>
+
+        <h3>About this simulation</h3>
+        <p>
+          Helios runs in 2D with equal masses. It softens gravity at very close range so bodies pass
+          through each other instead of reaching infinite speeds. It also adds a weak pull toward the
+          center of the screen so bodies return instead of escaping. Click to place bodies, press
+          Play, and watch how small changes in placement lead to completely different outcomes.
+        </p>
+      </div>
+    </dialog>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
